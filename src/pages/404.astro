@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Stránka nenalezena" noindex>
+  <div class="mx-auto max-w-5xl px-4 py-32 text-center">
+    <p class="text-6xl font-bold text-brand-600">404</p>
+    <h1 class="mt-4 text-2xl font-bold text-slate-900">Stránka nenalezena</h1>
+    <p class="mt-2 text-slate-600">
+      Odkaz je nejspíš neplatný nebo se stránka přesunula.
+    </p>
+    <a
+      href="/"
+      class="mt-8 inline-block rounded-lg bg-brand-600 px-6 py-3 font-medium text-white hover:bg-brand-700"
+    >
+      Zpět na úvod
+    </a>
+  </div>
+</BaseLayout>

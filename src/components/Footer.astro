@@ -1,0 +1,35 @@
+---
+import { SITE, CONTACT } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200 bg-slate-50">
+  <div class="mx-auto max-w-5xl px-4 py-10 text-sm text-slate-600">
+    <div class="flex flex-col gap-6 sm:flex-row sm:justify-between">
+      <div>
+        <p class="font-semibold text-slate-900">{SITE.name}</p>
+        <p class="mt-1">{CONTACT.address}</p>
+        <p>IČO: {CONTACT.ico}</p>
+      </div>
+
+      <div>
+        <p class="font-semibold text-slate-900">Kontakt</p>
+        <p class="mt-1">
+          <a href={`mailto:${CONTACT.email}`} class="hover:text-brand-600">
+            {CONTACT.email}
+          </a>
+        </p>
+        <p>
+          <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} class="hover:text-brand-600">
+            {CONTACT.phone}
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-8 text-xs text-slate-400">
+      &copy; {year} {SITE.name}. Všechna práva vyhrazena.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { SITE } from '../consts';
+
+const features = [
+  {
+    title: 'První výhoda',
+    text: 'Popiš tady, co konkrétně zákazník získá. Jedna až dvě věty stačí.',
+  },
+  {
+    title: 'Druhá výhoda',
+    text: 'Konkrétní čísla fungují líp než přídavná jména.',
+  },
+  {
+    title: 'Třetí výhoda',
+    text: 'Čím se odlišujete od konkurence.',
+  },
+];
+---
+
+<BaseLayout description={SITE.description}>
+  <!-- Hero -->
+  <div class="bg-linear-to-b from-brand-50 to-white">
+    <div class="mx-auto max-w-5xl px-4 py-24 text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Hlavní sdělení webu
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
+        Podtitulek, který v jedné větě vysvětlí, co děláte a pro koho.
+      </p>
+      <div class="mt-10 flex justify-center gap-4">
+        <a
+          href="/kontakt/"
+          class="rounded-lg bg-brand-600 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-700"
+        >
+          Nezávazná poptávka
+        </a>
+        <a
+          href="/sluzby/"
+          class="rounded-lg border border-slate-300 px-6 py-3 font-medium text-slate-700 transition-colors hover:border-slate-400"
+        >
+          Naše služby
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Section title="Proč my" lead="Tři důvody, proč si vybrat právě nás.">
+    <div class="grid gap-8 sm:grid-cols-3">
+      {
+        features.map((f) => (
+          <div class="rounded-xl border border-slate-200 p-6">
+            <h3 class="font-semibold text-slate-900">{f.title}</h3>
+            <p class="mt-2 text-slate-600">{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>
