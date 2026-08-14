@@ -19,8 +19,8 @@ export default defineConfig({
   },
 
   build: {
-    // Generuje /o-nas.html místo /o-nas/index.html.
-    // Na Apache (Wedos) funguje obojí, ale tohle je čistší pro FTP deploy.
+    // 'directory' = /o-nas/index.html → URL bez .html na konci.
+    // Na Apache u Wedosu funguje out of the box.
     format: 'directory',
   },
 });
