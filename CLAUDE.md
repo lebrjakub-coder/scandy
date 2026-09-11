@@ -121,14 +121,42 @@ Pozor na přejmenované třídy oproti verzi 3: `bg-gradient-to-b` → `bg-linea
 Jedna větev `main`, bez develop. Push přes `./save.sh "popis"`.
 Autentizace běží přes Personal Access Token uložený v macOS Klíčence.
 
+### Co Scandy prodává
+
+Typový dřevěný dům **TINYHOUSE** na klíč, navržený jako drobná stavba podle
+stavebního zákona 283/2021 Sb. (do 55 m², do 4 m, na rekreačním pozemku často bez
+povolení záměru). Dvě délky (40 a 55 m²), dvě střechy (pultová, sedlová).
+Architekt Ing. Filip Kment, statika Ing. Klára Indrová. Značka patří pod
+Stavbag Constructions s.r.o., Dobřichovice. Zatím jen projekt, první domy se
+připravují.
+
+Podklady jsou v `IMPORT/` (ignorováno gitem): architektonická studie `SCANDY.pdf`,
+projektová dokumentace obou střech, dvě AI vizualizace. Fotky v části Materiály
+studie jsou cizí referenční snímky, na web nepatří. Kontakty na konci studie jsou
+architektovy, ne firemní.
+
+Údaje o domu (varianty, střechy, cena) jsou v `HOUSE` v `src/consts.ts`.
+
 ### Nedodělky
 
-- [ ] `site` v `astro.config.mjs` je zatím placeholder `https://scandy.cz`
-- [ ] `src/consts.ts` obsahuje smyšlené kontakty a IČO
-- [ ] Doména v `public/robots.txt`
-- [ ] Texty na všech stránkách jsou zástupné
+- [x] Doména je `scandy.cz` (potvrzeno 10. 9. 2026), `site` i `robots.txt` jsou správně
+- [ ] Hosting: u Wedosu je zatím jen doména, webhosting (NoLimit) se teprve objednává
+- [ ] `src/consts.ts`: e-mail `info@scandy.cz` je smyšlený; IČO je prázdné a web ho
+      nezobrazuje, dokud se nedoplní (telefon a adresa jsou reálné)
+- [ ] Dodací lhůta (`HOUSE.deliveryWeeks`) je `null`, na webu se zatím neukazuje
+- [ ] Ceny jsou uvedené bez DPH. Pro spotřebitele (soukromé osoby) musí být podle
+      zákona o ochraně spotřebitele uvedena i cena s DPH. Vyjasnit s majitelem.
+- [ ] Parametry varianty 40 m² (9,5 m, užitná 32 m²) jsou odvozené ze studie,
+      majitel je musí potvrdit. Projektová dokumentace (DPS) existuje jen pro
+      13m dům. Půdorys 40 na webu je výřez z DPS půdorysu bez levého pokoje
+      (stěna je cca 3,5 m od okraje, takže délka 9,4 m sedí se studií).
+- [ ] Vztah Scandy a Stavbag Constructions v textu O nás potvrdit s majitelem
+- [ ] Vizualizace v `src/assets/` nahradit fotkami, až bude stát první dům
 - [ ] Kontaktní formulář nikam neodesílá — statický hosting to sám neumí,
       bude potřeba PHP skript na Wedosu nebo externí služba
-- [ ] Deploy na Wedos: GitHub Actions, které po pushi do `main` spustí build
-      a nahrají `dist/` přes FTP. FTP údaje patří do GitHub Secrets, nikdy do repa.
+- [x] Deploy: `.github/workflows/deploy.yml` po pushi do `main` sestaví web a nahraje
+      `dist/` přes FTPS do `www/`. Potřebuje GitHub Secrets `FTP_SERVER`, `FTP_USERNAME`,
+      `FTP_PASSWORD` (zadává majitel v GitHubu, nikdy do repa). `public/.htaccess` řeší
+      404, přesměrování na HTTPS a cache.
+- [ ] Zadat FTP údaje do GitHub Secrets a zapnout Let's Encrypt ve správě Wedosu
 - [ ] Chybí OG náhledový obrázek (`public/og.jpg` → ideálně WebP, 1200×630)

@@ -1,0 +1,295 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { HOUSE, formatPriceFrom } from '../consts';
+import sedlova40Img from '../assets/studie-sedlova-strecha-40.webp';
+import sedlova55Img from '../assets/studie-sedlova-strecha-55.webp';
+// Půdorys 40 je výřez z DPS půdorysu 13m domu bez levého pokoje (DPS pro 40 zatím není).
+import pudorys40Img from '../assets/dps-pudorys-40.webp';
+import pudorys55Img from '../assets/dps-pudorys-55.webp';
+import rezaniImg from '../assets/stavba-rezani-tramu.webp';
+
+const [v40, v55] = HOUSE.variants;
+
+// Vše, co se liší mezi velikostmi, je tady. Společné věci jsou v sekcích pod bloky.
+const houses = [
+  {
+    ...v40,
+    anchor: 'tinyhouse-40',
+    lead: 'Dvě místnosti, koupelna a úložné patro na 9,5 metrech délky. Pro dva lidi, víkendy i celoroční bydlení.',
+    layout: [
+      'Vstupuje se z podélné fasády přes zádveří s botníkem a věšákem. Odtud vede chodba do koupelny s WC a do obou stran domu: na jednu stranu do ložnice s vestavěnou hlubokou skříní, na druhou do obývacího prostoru s kuchyňskou linkou.',
+      'Obývací prostor má na terasu velký posuvný portál, takže se v létě otevře ven. Nad zádveřím, chodbou, koupelnou a kuchyní je úložné patro, přístupné výsuvnou truhlářskou vestavbou z obývacího prostoru nebo z ložnice.',
+    ],
+    rooms: [
+      ['Obývací prostor s kuchyní', '15,0 m²'],
+      ['Ložnice', '9,7 m²'],
+      ['Koupelna s WC', '3,3 m²'],
+      ['Chodba', '2,2 m²'],
+      ['Zádveří', '2,1 m²'],
+    ],
+    exterior: { img: sedlova40Img, alt: 'Dům TINYHOUSE 40 se sedlovou střechou a dřevěnou terasou' },
+    plan: {
+      img: pudorys40Img,
+      alt: 'Půdorys 1. NP domu TINYHOUSE 40 z projektové dokumentace: obývací prostor s kuchyní, chodba, koupelna, zádveří a ložnice, s kótami',
+      caption: 'Půdorys 1. NP',
+    },
+  },
+  {
+    ...v55,
+    anchor: 'tinyhouse-55',
+    lead: 'Stejný dům prodloužený o třetí místnost. Pro rodinu s dítětem, práci z domova nebo hosty.',
+    layout: [
+      'Základ je stejný jako u menší varianty: zádveří, chodba, koupelna s WC, ložnice s vestavěnou skříní a obývací prostor s kuchyní. Za obývacím prostorem je navíc třetí místnost o 10,8 m².',
+      'Ta se hodí jako dětský pokoj, pracovna nebo ložnice pro hosty. Na boční stěně má bezrámové sedací okno se sníženým parapetem a knihovnou kolem, takže funguje i jako čtecí kout.',
+    ],
+    rooms: [
+      ['Obývací prostor s kuchyní', '15,0 m²'],
+      ['Pokoj', '10,8 m²'],
+      ['Ložnice', '9,7 m²'],
+      ['Koupelna s WC', '3,3 m²'],
+      ['Chodba', '2,2 m²'],
+      ['Zádveří', '2,1 m²'],
+    ],
+    exterior: { img: sedlova55Img, alt: 'Dům TINYHOUSE 55 se sedlovou střechou a dřevěnou terasou' },
+    plan: {
+      img: pudorys55Img,
+      alt: 'Půdorys 1. NP domu TINYHOUSE 55 z projektové dokumentace: pokoj, obývací prostor s kuchyní, chodba, koupelna, zádveří a ložnice, s kótami',
+      caption: 'Půdorys 1. NP',
+    },
+  },
+];
+
+const construction = [
+  {
+    title: 'Nosná konstrukce',
+    text: 'Lehký dřevěný skelet two-by-four ze sloupků 50/140 mm. Rámy opláštěné dřevovláknitou deskou zvenku a OSB deskou zevnitř vznikají v hale jako hotové panely.',
+  },
+  {
+    title: 'Fasáda',
+    text: 'Svislá modřínová nebo cedrová prkna na provětrávaném roštu. Meziokenní pilíře z antracitových vláknocementových desek. Skladba je difuzně otevřená.',
+  },
+  {
+    title: 'Střecha',
+    text: 'Pultová se sklonem 10° nebo sedlová se sklonem 21°, obě z falcovaného lakovaného plechu v tmavě šedé (RAL 7016) na dřevěném záklopu. Cena obou variant je stejná.',
+  },
+  {
+    title: 'Okna a dveře',
+    text: 'Plastové rámy v antracitu s izolačním trojsklem, Uw 0,8 W/m²K. Na terasu vedou velké posuvné HS portály, na boční fasádě je bezrámové sedací okno.',
+  },
+  {
+    title: 'Založení',
+    text: 'Betonové patky do nezámrzné hloubky, dům stojí nad terénem s provětrávanou mezerou. Bez základové desky, bez hydroizolace, bez výkopů po celé ploše.',
+  },
+  {
+    title: 'Interiér',
+    text: 'Tenkovrstvé omítky, vinylová podlaha, keramický obklad v koupelně na celou výšku, zavěšené WC. Vnitřní dveře bezfalcové se skrytou zárubní.',
+  },
+];
+
+const included = [
+  'Kompletní dům včetně oken, dveří, střechy a fasády',
+  'Koupelna s WC, obklady a sanitou',
+  'Elektrokotel se zásobníkem teplé vody',
+  'Podlahy, omítky, malby, vnitřní dveře',
+  'Úložné patro nad chodbou, koupelnou a kuchyňskou linkou',
+  'Doprava a montáž na vašem pozemku',
+];
+
+const perPlot = [
+  'Základové patky podle terénu a geologie pozemku',
+  'Terasa a pergola podle orientace domu',
+  'Přípojky vody, elektřiny a kanalizace',
+  'Kuchyňská linka a vestavěný nábytek',
+];
+
+const conditions = [
+  'Zastavěná plocha do 55 m² a výška do 4 m od upraveného terénu',
+  'Pozemek je územním plánem určený jako plocha rekreace',
+  'Dům stojí nejméně 2 m od hranic pozemku',
+  'Po umístění domu zůstane alespoň 50 % pozemku schopných vsakovat dešťovou vodu',
+];
+
+const drawingFrame = 'block rounded-xl border border-slate-200 bg-white p-2 sm:p-4';
+---
+
+<BaseLayout
+  title="Dům TINYHOUSE: parametry, dispozice a cena"
+  description="Parametry domu TINYHOUSE: 40 nebo 55 m², pultová nebo sedlová střecha, dřevěný skelet na patkách. Co je v ceně a kdy nepotřebujete povolení. Poptejte nabídku."
+>
+  {
+    houses.map((h, i) => (
+      <Section title={h.name} lead={h.lead} id={h.anchor} class={i % 2 === 0 ? 'bg-slate-50' : ''}>
+        <Image
+          src={h.exterior.img}
+          alt={h.exterior.alt}
+          widths={[640, 1024, 1600]}
+          sizes="(min-width: 1024px) 1024px, 100vw"
+          class="w-full rounded-xl border border-slate-200 bg-white"
+        />
+
+        <div class="mt-12 grid gap-8 sm:grid-cols-2">
+          <dl class="grid grid-cols-2 gap-x-4 gap-y-3 self-start rounded-xl border border-slate-200 bg-white p-6 text-sm">
+            <dt class="text-slate-500">Rozměry</dt>
+            <dd class="font-medium text-slate-900">{h.length} × {HOUSE.width}</dd>
+            <dt class="text-slate-500">Zastavěná plocha</dt>
+            <dd class="font-medium text-slate-900">{h.builtUp}</dd>
+            <dt class="text-slate-500">Užitná plocha</dt>
+            <dd class="font-medium text-slate-900">{h.usable}</dd>
+            <dt class="text-slate-500">Výška</dt>
+            <dd class="font-medium text-slate-900">{HOUSE.height}</dd>
+            <dt class="text-slate-500">Střecha</dt>
+            <dd class="font-medium text-slate-900">pultová nebo sedlová</dd>
+            <dt class="text-slate-500">Cena na klíč</dt>
+            <dd class="font-semibold text-slate-900">{formatPriceFrom(h.priceFrom)}</dd>
+          </dl>
+          <div>
+            <h3 class="font-semibold text-slate-900">Dispozice</h3>
+            <div class="mt-2 space-y-4 text-slate-600">
+              {h.layout.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+            <dl class="mt-6 grid grid-cols-[1fr_auto] gap-x-6 gap-y-1 text-sm">
+              {h.rooms.map(([room, area]) => (
+                <>
+                  <dt class="text-slate-500">{room}</dt>
+                  <dd class="font-medium text-slate-900">{area}</dd>
+                </>
+              ))}
+            </dl>
+          </div>
+        </div>
+
+        <figure class="mt-12">
+          <a href={h.plan.img.src} target="_blank" rel="noopener" class={drawingFrame}>
+            <Image
+              src={h.plan.img}
+              alt={h.plan.alt}
+              widths={[640, 1024, 1600, 2000]}
+              sizes="(min-width: 1024px) 1024px, 100vw"
+              class="w-full"
+            />
+          </a>
+          <figcaption class="mt-2 text-sm text-slate-500">
+            {h.plan.caption}. Klepnutím otevřete ve velkém.
+          </figcaption>
+        </figure>
+
+        <div class="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <a
+            href="/kontakt/"
+            class="rounded-lg bg-brand-600 px-6 py-3 text-center font-medium text-white transition-colors hover:bg-brand-700"
+          >
+            Poptat {h.name}
+          </a>
+          <p class="text-sm text-slate-500">
+            Konečná cena závisí na pozemku, založení a vybavení. Přesnou nabídku připravíme po
+            prohlídce.
+          </p>
+        </div>
+      </Section>
+    ))
+  }
+
+  <Section
+    title="Společné pro obě velikosti"
+    lead="Konstrukce, materiály a založení jsou u obou domů stejné. Liší se jen délka."
+    id="spolecne"
+    class="bg-slate-50"
+  >
+    <Image
+      src={rezaniImg}
+      alt="Kotoučová pila řeže dřevěný trám, kolem létají piliny"
+      widths={[640, 1024, 1600]}
+      sizes="(min-width: 1024px) 1024px, 100vw"
+      class="mb-10 w-full rounded-xl"
+    />
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        construction.map((c) => (
+          <article class="rounded-xl border border-slate-200 p-6">
+            <h3 class="font-semibold text-slate-900">{c.title}</h3>
+            <p class="mt-2 text-slate-600">{c.text}</p>
+          </article>
+        ))
+      }
+    </div>
+    <p class="mt-6 text-sm text-slate-500">
+      Konstrukce je staticky posouzena pro sněhové oblasti I až V a větrové oblasti I a II. Dům
+      tak můžete postavit kdekoliv v Česku včetně hor. Návrh a projektová dokumentace:
+      {HOUSE.architect}, statika {HOUSE.structuralEngineer}.
+    </p>
+  </Section>
+
+  <Section title="Co je v ceně">
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div>
+        <h3 class="font-semibold text-slate-900">Dům na klíč obsahuje</h3>
+        <ul class="mt-4 space-y-2 text-slate-600">
+          {
+            included.map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-0.5 text-brand-600" aria-hidden="true">✓</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-slate-900">Naceníme podle pozemku</h3>
+        <ul class="mt-4 space-y-2 text-slate-600">
+          {
+            perPlot.map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-0.5 text-slate-400" aria-hidden="true">+</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-4 text-sm text-slate-500">
+          Tyto položky se liší pozemek od pozemku, proto je nemáme v paušální ceně. Po prohlídce
+          je naceníme přesně.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section
+    title="Kdy nepotřebujete povolení"
+    lead="Dům je navržený jako drobná stavba podle stavebního zákona č. 283/2021 Sb."
+    class="bg-slate-50"
+  >
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div>
+        <p class="text-slate-600">
+          Pokud pozemek a umístění splní tyto podmínky, stavba nevyžaduje povolení záměru:
+        </p>
+        <ul class="mt-4 space-y-2 text-slate-600">
+          {
+            conditions.map((c) => (
+              <li class="flex gap-3">
+                <span class="mt-0.5 text-brand-600" aria-hidden="true">✓</span>
+                <span>{c}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="self-start rounded-xl border border-brand-100 bg-brand-50 p-6 text-slate-700">
+        <p class="font-semibold text-slate-900">Ověříme to za vás</p>
+        <p class="mt-2">
+          Podmínky vypadají jednoduše, ale územní plán každé obce je jiný a některé obce mají
+          vlastní regulativy. Než cokoliv podepíšete, projdeme váš pozemek a řekneme vám na
+          rovinu, jestli se dům obejde bez povolení, nebo co bude potřeba vyřídit.
+        </p>
+        <a href="/kontakt/" class="mt-4 inline-block font-medium text-brand-700 hover:underline">
+          Poslat pozemek k ověření →
+        </a>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

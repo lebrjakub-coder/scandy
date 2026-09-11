@@ -1,3 +1,9 @@
+# podklady od majitele — nepatří do veřejného repozitáře
+IMPORT/
+
+# místní nastavení Claude Code (dev server pro náhled)
+.claude/
+
 # build output
 dist/
 .output/

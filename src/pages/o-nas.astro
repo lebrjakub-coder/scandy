@@ -1,19 +1,65 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
+import { HOUSE } from '../consts';
+import stavbaImg from '../assets/stavba-drevena-konstrukce.webp';
 ---
 
-<BaseLayout title="O nás" description="Kdo jsme a jak pracujeme.">
-  <Section title="O nás">
-    <div class="max-w-2xl space-y-4 text-slate-600">
+<BaseLayout
+  title="O nás: architekt, stavební firma a jak stavíme"
+  description="Za domem TINYHOUSE stojí stavební firma z Dobřichovic a architekt Ing. Filip Kment. Přečtěte si, proč jsme dům navrhli a jak probíhá stavba."
+>
+  <Section title="O nás" lead="Malý dům, který nevznikl jako kompromis.">
+    <div class="space-y-4 text-slate-600">
       <p>
-        Sem přijde příběh firmy — kdy vznikla, proč, a co vás odlišuje.
-        Konkrétní fakta fungují líp než obecné fráze.
+        Scandy je značka, pod kterou stavební firma Stavbag Constructions s.r.o. z Dobřichovic
+        nabízí typový dům {HOUSE.name}. Na stavbách jsme viděli, kolik lidí chce na
+        rekreačním pozemku pořádný dům a ne chatku, ale odradí je roky papírování a cena
+        individuálního projektu.
       </p>
       <p>
-        Druhý odstavec může být o týmu, přístupu k práci nebo o hodnotách,
-        které se opravdu projevují v tom, jak pracujete.
+        Proto jsme nechali navrhnout jeden dům, který má hotovou dokumentaci pro provedení
+        stavby, posouzenou statiku a vejde se do definice drobné stavby. Zákazník tak
+        nezačíná od nuly, ale vybírá si z hotových variant a řeší jen to, co se opravdu liší:
+        pozemek, terasu a vybavení.
       </p>
     </div>
+    <Image
+      src={stavbaImg}
+      alt="Tesař zatlouká hřebík do dřevěného rámu stěny, v pozadí rozestavěná dřevostavba"
+      widths={[640, 1024, 1600]}
+      sizes="(min-width: 1024px) 1024px, 100vw"
+      class="mt-10 w-full rounded-xl"
+    />
   </Section>
+
+  <Section title="Kdo za domem stojí" class="bg-slate-50">
+    <div class="grid gap-6 sm:grid-cols-2">
+      <article class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="font-semibold text-slate-900">Architekt</h3>
+        <p class="mt-1 text-lg text-slate-900">{HOUSE.architect}</p>
+        <p class="mt-2 text-slate-600">
+          Autor návrhu a generální projektant. Dům navrhl v roce 2025 v Řevnicích, včetně
+          dispozice s úložným patrem, sedacím oknem a obou variant střechy.
+        </p>
+        <a
+          href={HOUSE.architectUrl}
+          rel="noopener"
+          class="mt-3 inline-block text-sm font-medium text-brand-700 hover:underline"
+        >
+          filipkment.cz →
+        </a>
+      </article>
+      <article class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="font-semibold text-slate-900">Statika</h3>
+        <p class="mt-1 text-lg text-slate-900">{HOUSE.structuralEngineer}</p>
+        <p class="mt-2 text-slate-600">
+          Autorizovaná inženýrka ČKAIT. Posoudila nosnou konstrukci pro sněhové oblasti I až V
+          a větrové oblasti I a II, tedy pro celé území Česka.
+        </p>
+      </article>
+    </div>
+  </Section>
+
 </BaseLayout>

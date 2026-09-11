@@ -1,0 +1,20 @@
+# Apache na Wedosu. Soubor se kopíruje 1:1 do dist/ a tím na server.
+
+# Vlastní stránka 404 (Astro ji sestaví do /404.html).
+ErrorDocument 404 /404.html
+
+# Vše přesměrovat na HTTPS. Certifikát Let's Encrypt musí být ve správě Wedosu zapnutý,
+# jinak prohlížeč ukáže chybu certifikátu.
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Cache: obrázky a soubory v /_astro/ mají v názvu otisk obsahu, můžou se kešovat dlouho.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|avif|svg|woff2|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>

@@ -1,14 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
-import { CONTACT, SITE } from '../consts';
+import { CONTACT, SITE, HOUSE } from '../consts';
+
+const inputClass =
+  'mt-1 w-full rounded-lg border border-slate-300 px-3 py-3 text-base focus:border-brand-500 focus:outline-none';
 ---
 
-<BaseLayout title="Kontakt" description="Kontaktní údaje a adresa.">
-  <Section title="Kontakt" lead="Ozvěte se, ozveme se zpátky do 24 hodin.">
+<BaseLayout
+  title="Kontakt a nezávazná poptávka domu TINYHOUSE"
+  description="Napište nám, kde máte pozemek a která velikost domu vás zajímá. Ověříme podmínky pro drobnou stavbu a připravíme nabídku. Odpovídáme do dvou pracovních dnů."
+>
+  <Section>
+    <!-- Nadpis je v levém sloupci, aby začínal ve stejné výšce jako formulář. -->
     <div class="grid gap-10 sm:grid-cols-2">
       <div class="space-y-4 text-slate-600">
-        <div>
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900">Kontakt</h1>
+        <div class="pt-4">
           <p class="text-sm font-medium text-slate-900">E-mail</p>
           <a href={`mailto:${CONTACT.email}`} class="text-brand-600 hover:underline">
             {CONTACT.email}
@@ -26,9 +34,14 @@ import { CONTACT, SITE } from '../consts';
         <div>
           <p class="text-sm font-medium text-slate-900">Adresa</p>
           <p>{SITE.name}</p>
-          <p>{CONTACT.address}</p>
-          <p>IČO: {CONTACT.ico}</p>
+          <p>{CONTACT.street}</p>
+          <p>{CONTACT.city}</p>
+          {CONTACT.ico && <p>IČO: {CONTACT.ico}</p>}
         </div>
+        <p class="pt-4 text-sm text-slate-500">
+          Nejrychleji vám odpovíme, když do zprávy napíšete obec a číslo parcely. Podíváme se
+          do územního plánu ještě před prvním telefonátem.
+        </p>
       </div>
 
       <!--
@@ -39,40 +52,44 @@ import { CONTACT, SITE } from '../consts';
       <form class="space-y-4" method="post" action="#">
         <div>
           <label for="name" class="block text-sm font-medium text-slate-900">Jméno</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-brand-500 focus:outline-none"
-          />
+          <input id="name" name="name" type="text" required autocomplete="name" class={inputClass} />
         </div>
         <div>
           <label for="email" class="block text-sm font-medium text-slate-900">E-mail</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-brand-500 focus:outline-none"
-          />
+          <input id="email" name="email" type="email" required autocomplete="email" class={inputClass} />
         </div>
         <div>
-          <label for="message" class="block text-sm font-medium text-slate-900">Zpráva</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            required
-            class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-brand-500 focus:outline-none"
-          ></textarea>
+          <label for="phone" class="block text-sm font-medium text-slate-900">
+            Telefon <span class="font-normal text-slate-500">(nepovinné)</span>
+          </label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" class={inputClass} />
+        </div>
+        <div>
+          <label for="variant" class="block text-sm font-medium text-slate-900">
+            Která velikost vás zajímá
+          </label>
+          <select id="variant" name="variant" class={inputClass}>
+            <option value="">Ještě nevím</option>
+            {HOUSE.variants.map((v) => <option value={v.id}>{v.name}</option>)}
+            <option value="obe">Obě, chci porovnat</option>
+          </select>
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-slate-900">
+            Zpráva
+            <span class="font-normal text-slate-500">(kde je pozemek, co plánujete)</span>
+          </label>
+          <textarea id="message" name="message" rows="5" required class={inputClass}></textarea>
         </div>
         <button
           type="submit"
-          class="rounded-lg bg-brand-600 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-700"
+          class="w-full rounded-lg bg-brand-600 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-700 sm:w-auto"
         >
-          Odeslat
+          Odeslat poptávku
         </button>
+        <p class="text-xs text-slate-500">
+          Odesláním souhlasíte s tím, že vaše údaje použijeme jen k vyřízení této poptávky.
+        </p>
       </form>
     </div>
   </Section>
