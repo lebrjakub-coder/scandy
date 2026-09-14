@@ -9,7 +9,7 @@ export const SITE = {
   locale: 'cs_CZ',
 } as const;
 
-// TODO: e-mail je zatím smyšlený (viz CLAUDE.md, Nedodělky).
+// E-mail je reálná schránka u Wedosu (přeposílá se do Gmailu majitele).
 // IČO: dokud je prázdné, web ho nikde nezobrazí.
 export const CONTACT = {
   email: 'info@scandy.cz',

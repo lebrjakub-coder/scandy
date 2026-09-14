@@ -44,12 +44,21 @@ const inputClass =
         </p>
       </div>
 
-      <!--
-        Formulář zatím nikam neodesílá. Na statickém hostingu potřebuješ
-        externí službu (Formspree, Web3Forms) nebo PHP skript na Wedosu.
-        Vyřešíme až u deploye.
-      -->
-      <form class="space-y-4" method="post" action="#">
+      <!-- Odesílá PHP skript public/odeslat.php na Wedosu, ten pošle poptávku na CONTACT.email. -->
+      <form id="formular" class="scroll-mt-24 space-y-4" method="post" action="/odeslat.php">
+        <p
+          id="chyba"
+          class="hidden rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+          role="alert"
+        >
+          Odeslání se nepovedlo. Zkontrolujte prosím jméno, e-mail a zprávu a zkuste to znovu.
+          Případně nám napište přímo na {CONTACT.email}.
+        </p>
+        <!-- Past na roboty: člověk pole nevidí, robot ho vyplní a skript ho zahodí. -->
+        <div class="hidden" aria-hidden="true">
+          <label for="web">Web</label>
+          <input id="web" name="web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
         <div>
           <label for="name" class="block text-sm font-medium text-slate-900">Jméno</label>
           <input id="name" name="name" type="text" required autocomplete="name" class={inputClass} />
@@ -93,4 +102,11 @@ const inputClass =
       </form>
     </div>
   </Section>
+
+  <!-- Po neúspěšném odeslání se skript vrátí na /kontakt/?chyba=1 a ukážeme hlášku. -->
+  <script is:inline>
+    if (new URLSearchParams(location.search).has('chyba')) {
+      document.getElementById('chyba').classList.remove('hidden');
+    }
+  </script>
 </BaseLayout>

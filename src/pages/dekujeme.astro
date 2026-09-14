@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { CONTACT } from '../consts';
+---
+
+<BaseLayout
+  title="Děkujeme za poptávku, ozveme se do dvou dnů"
+  description="Vaši poptávku domu TINYHOUSE jsme přijali. Do dvou pracovních dnů se ozveme s tím, co na vašem pozemku jde postavit. Zatím si prohlédněte parametry domu."
+  noindex
+>
+  <Section
+    title="Děkujeme, poptávka je u nás"
+    lead="Ozveme se do dvou pracovních dnů. Když to spěchá, zavolejte."
+  >
+    <div class="space-y-6 text-slate-600">
+      <p>
+        Nejdřív se podíváme do územního plánu vaší obce a ověříme, jestli se dům obejde bez
+        povolení. Pak vám napíšeme nebo zavoláme s konkrétním postupem.
+      </p>
+      <p>
+        Telefon:
+        <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} class="text-brand-600 hover:underline">
+          {CONTACT.phone}
+        </a>
+      </p>
+      <div class="flex flex-col gap-4 sm:flex-row">
+        <a
+          href="/dum/"
+          class="rounded-lg bg-brand-600 px-6 py-3 text-center font-medium text-white transition-colors hover:bg-brand-700"
+        >
+          Prohlédnout dům
+        </a>
+        <a
+          href="/"
+          class="rounded-lg border border-slate-300 px-6 py-3 text-center font-medium text-slate-700 transition-colors hover:border-slate-400"
+        >
+          Zpět na úvod
+        </a>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

@@ -142,8 +142,9 @@ architektovy, ne firemní.
 - [x] Doména je `scandy.cz` (potvrzeno 10. 9. 2026), `site` i `robots.txt` jsou správně
 - [x] Hosting: Wedos Webhosting LowCost pro scandy.cz, aktivní od 11. 9. 2026,
       FTP server `403561.w61.wedos.net`, účet `w403561` (heslo jen v GitHub Secrets)
-- [ ] `src/consts.ts`: e-mail `info@scandy.cz` je smyšlený; IČO je prázdné a web ho
-      nezobrazuje, dokud se nedoplní (telefon a adresa jsou reálné)
+- [x] E-mail `info@scandy.cz` je od 14. 9. 2026 reálná schránka u Wedosu, přeposílá
+      na Gmail majitele (telefon a adresa jsou reálné)
+- [ ] IČO v `src/consts.ts` je prázdné a web ho nezobrazuje, dokud se nedoplní
 - [ ] Dodací lhůta (`HOUSE.deliveryWeeks`) je `null`, na webu se zatím neukazuje
 - [ ] Ceny jsou uvedené bez DPH. Pro spotřebitele (soukromé osoby) musí být podle
       zákona o ochraně spotřebitele uvedena i cena s DPH. Vyjasnit s majitelem.
@@ -153,8 +154,9 @@ architektovy, ne firemní.
       (stěna je cca 3,5 m od okraje, takže délka 9,4 m sedí se studií).
 - [ ] Vztah Scandy a Stavbag Constructions v textu O nás potvrdit s majitelem
 - [ ] Vizualizace v `src/assets/` nahradit fotkami, až bude stát první dům
-- [ ] Kontaktní formulář nikam neodesílá — statický hosting to sám neumí,
-      bude potřeba PHP skript na Wedosu nebo externí služba
+- [x] Kontaktní formulář odesílá `public/odeslat.php` (PHP na Wedosu, `mail()` z
+      info@scandy.cz na info@scandy.cz, honeypot `web`). Úspěch → `/dekujeme/` (noindex),
+      chyba → `/kontakt/?chyba=1`. Nasazeno 14. 9. 2026.
 - [x] Deploy: `.github/workflows/deploy.yml` po pushi do `main` sestaví web a nahraje
       `dist/` přes FTPS do `www/`. Potřebuje GitHub Secrets `FTP_SERVER`, `FTP_USERNAME`,
       `FTP_PASSWORD` (zadává majitel v GitHubu, nikdy do repa). `public/.htaccess` řeší
