@@ -140,7 +140,8 @@ architektovy, ne firemní.
 ### Nedodělky
 
 - [x] Doména je `scandy.cz` (potvrzeno 10. 9. 2026), `site` i `robots.txt` jsou správně
-- [ ] Hosting: u Wedosu je zatím jen doména, webhosting (NoLimit) se teprve objednává
+- [x] Hosting: Wedos Webhosting LowCost pro scandy.cz, aktivní od 11. 9. 2026,
+      FTP server `403561.w61.wedos.net`, účet `w403561` (heslo jen v GitHub Secrets)
 - [ ] `src/consts.ts`: e-mail `info@scandy.cz` je smyšlený; IČO je prázdné a web ho
       nezobrazuje, dokud se nedoplní (telefon a adresa jsou reálné)
 - [ ] Dodací lhůta (`HOUSE.deliveryWeeks`) je `null`, na webu se zatím neukazuje
@@ -158,5 +159,5 @@ architektovy, ne firemní.
       `dist/` přes FTPS do `www/`. Potřebuje GitHub Secrets `FTP_SERVER`, `FTP_USERNAME`,
       `FTP_PASSWORD` (zadává majitel v GitHubu, nikdy do repa). `public/.htaccess` řeší
       404, přesměrování na HTTPS a cache.
-- [ ] Zadat FTP údaje do GitHub Secrets a zapnout Let's Encrypt ve správě Wedosu
+- [x] FTP údaje jsou v GitHub Secrets, Let's Encrypt zapnutý 14. 9. 2026
 - [ ] Chybí OG náhledový obrázek (`public/og.jpg` → ideálně WebP, 1200×630)
