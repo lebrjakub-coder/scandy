@@ -45,8 +45,11 @@ const steps = [
 ---
 
 <BaseLayout description={SITE.description}>
-  <!-- Hero: fotka přes celou šířku, text přes ni. Tmavý přechod zdola drží kontrast textu. -->
-  <section class="relative isolate flex min-h-[85svh] items-end overflow-hidden bg-slate-900 text-white">
+  <!--
+    Hero. Mobil: fotka celá nahoře (dům je vidět), text pod ní na tmavém podkladu.
+    Od sm: fotka přes celou plochu, text přes ni, tmavý přechod zdola drží kontrast.
+  -->
+  <section class="relative isolate overflow-hidden bg-slate-900 text-white sm:flex sm:min-h-[85svh] sm:items-end">
     <Image
       src={heroImg}
       alt="Dům TINYHOUSE s pultovou střechou, svislým modřínovým obkladem a dřevěnou terasou na louce"
@@ -54,15 +57,15 @@ const steps = [
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      class="absolute inset-0 -z-20 h-full w-full object-cover object-[55%_50%]"
+      class="w-full sm:absolute sm:inset-0 sm:-z-20 sm:h-full sm:object-cover sm:object-[55%_50%]"
     />
     <div
-      class="absolute inset-0 -z-10 bg-linear-to-t from-slate-950/90 via-slate-950/45 to-slate-950/10"
+      class="absolute inset-0 -z-10 hidden bg-linear-to-t from-slate-950/90 via-slate-950/45 to-slate-950/10 sm:block"
       aria-hidden="true"
     >
     </div>
 
-    <div class="mx-auto w-full max-w-5xl px-4 pt-40 pb-12 sm:pb-20">
+    <div class="mx-auto w-full max-w-5xl px-4 py-10 sm:pt-40 sm:pb-20">
       <p class="text-sm font-semibold tracking-wide text-brand-100 uppercase">
         Typový dřevěný dům {HOUSE.name}
       </p>
