@@ -33,10 +33,10 @@ const inputClass =
         </div>
         <div>
           <p class="text-sm font-medium text-slate-900">Adresa</p>
-          <p>{SITE.name}</p>
+          <p>{CONTACT.company}</p>
           <p>{CONTACT.street}</p>
           <p>{CONTACT.city}</p>
-          {CONTACT.ico && <p>IČO: {CONTACT.ico}</p>}
+          <p class="mt-1 text-sm text-slate-500">IČO: {CONTACT.ico}, DIČ: {CONTACT.dic}</p>
         </div>
         <p class="pt-4 text-sm text-slate-500">
           Nejrychleji vám odpovíme, když do zprávy napíšete obec a číslo parcely. Podíváme se
@@ -98,6 +98,9 @@ const inputClass =
         </button>
         <p class="text-xs text-slate-500">
           Odesláním souhlasíte s tím, že vaše údaje použijeme jen k vyřízení této poptávky.
+          <a href="/ochrana-osobnich-udaju/" class="underline hover:text-slate-700">
+            Jak s údaji nakládáme
+          </a>
         </p>
       </form>
     </div>

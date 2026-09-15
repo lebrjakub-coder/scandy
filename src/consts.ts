@@ -10,13 +10,22 @@ export const SITE = {
 } as const;
 
 // E-mail je reálná schránka u Wedosu (přeposílá se do Gmailu majitele).
-// IČO: dokud je prázdné, web ho nikde nezobrazí.
+// Provozovatel webu: údaje z obchodního rejstříku (ARES, ověřeno 15. 9. 2026).
 export const CONTACT = {
   email: 'info@scandy.cz',
   phone: '+420 774 339 936',
+  company: 'Stavbag Constructions s.r.o.',
   street: 'Anežky České 1119',
   city: '252 29 Dobřichovice',
-  ico: '',
+  ico: '10754369',
+  dic: 'CZ10754369',
+} as const;
+
+// Měření: Google Tag Manager a CookieYes. Dokud jsou ID prázdná, layout skripty nevkládá.
+// TODO: doplnit po založení kontejneru GTM a webu v CookieYes (viz CLAUDE.md, Nedodělky).
+export const ANALYTICS = {
+  gtmId: '',
+  cookieYesId: '',
 } as const;
 
 export const NAV = [
@@ -36,7 +45,7 @@ export const HOUSE = {
   width: '4,25 m',
   height: '4 m',
 
-  // Dodací lhůta zatím není stanovená (null). Ceny „od“ jsou u variant, bez DPH.
+  // Dodací lhůta zatím není stanovená (null). Ceny „od“ jsou u variant, bez DPH (viz VAT_RATE).
   deliveryWeeks: null as number | null,
 
   variants: [
@@ -76,8 +85,12 @@ export const HOUSE = {
   ],
 } as const;
 
-/** Cena ve formátu „od 1 234 000 Kč bez DPH“, nebo „na vyžádání“, když ještě není stanovená. */
+/** Sazba DPH pro rekreační stavbu. Ceny v HOUSE.variants jsou bez DPH, web zobrazuje s DPH. */
+export const VAT_RATE = 0.21;
+
+/** Cena ve formátu „od 1 234 000 Kč vč. DPH“, nebo „na vyžádání“, když ještě není stanovená. */
 export function formatPriceFrom(price: number | null): string {
   if (price === null) return 'na vyžádání';
-  return `od ${price.toLocaleString('cs-CZ')} Kč bez DPH`;
+  const withVat = Math.round(price * (1 + VAT_RATE));
+  return `od ${withVat.toLocaleString('cs-CZ')} Kč vč. DPH`;
 }

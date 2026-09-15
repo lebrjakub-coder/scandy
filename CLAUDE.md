@@ -144,10 +144,15 @@ architektovy, ne firemní.
       FTP server `403561.w61.wedos.net`, účet `w403561` (heslo jen v GitHub Secrets)
 - [x] E-mail `info@scandy.cz` je od 14. 9. 2026 reálná schránka u Wedosu, přeposílá
       na Gmail majitele (telefon a adresa jsou reálné)
-- [ ] IČO v `src/consts.ts` je prázdné a web ho nezobrazuje, dokud se nedoplní
+- [x] Provozovatel v patičce: Stavbag Constructions s.r.o., IČO 10754369, DIČ CZ10754369
+      (z ARES 15. 9. 2026)
+- [x] Stránka `/ochrana-osobnich-udaju/` (GDPR + cookies), odkaz z patičky a z formuláře
+- [ ] Měření: `ANALYTICS` v `src/consts.ts` čeká na ID kontejneru GTM (`GTM-XXXXXXX`) a ID
+      webu v CookieYes. Dokud jsou prázdná, skripty se nevkládají. Po doplnění nastavit v GA4
+      klíčovou událost: zobrazení `/dekujeme/` = odeslaná poptávka.
 - [ ] Dodací lhůta (`HOUSE.deliveryWeeks`) je `null`, na webu se zatím neukazuje
-- [ ] Ceny jsou uvedené bez DPH. Pro spotřebitele (soukromé osoby) musí být podle
-      zákona o ochraně spotřebitele uvedena i cena s DPH. Vyjasnit s majitelem.
+- [x] Ceny se zobrazují s DPH 21 % (`VAT_RATE` v `src/consts.ts`, základ bez DPH zůstává
+      u variant). Rozhodnuto 15. 9. 2026.
 - [ ] Parametry varianty 40 m² (9,5 m, užitná 32 m²) jsou odvozené ze studie,
       majitel je musí potvrdit. Projektová dokumentace (DPS) existuje jen pro
       13m dům. Půdorys 40 na webu je výřez z DPS půdorysu bez levého pokoje

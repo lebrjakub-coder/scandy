@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { CONTACT } from '../consts';
+
+const updated = '15. 9. 2026';
+---
+
+<BaseLayout
+  title="Ochrana osobních údajů a cookies na webu Scandy"
+  description="Jak Stavbag Constructions s.r.o. nakládá s údaji z poptávkového formuláře na scandy.cz, jak dlouho je uchovává a jaká máte práva. Informace o cookies."
+>
+  <Section title="Ochrana osobních údajů" lead={`Platí od ${updated}.`}>
+    <div class="max-w-3xl space-y-8 text-slate-600">
+      <div>
+        <h3 class="font-semibold text-slate-900">Kdo údaje zpracovává</h3>
+        <p class="mt-2">
+          Správcem osobních údajů je {CONTACT.company}, IČO {CONTACT.ico}, se sídlem
+          {CONTACT.street}, {CONTACT.city}. Napsat nám můžete na
+          <a href={`mailto:${CONTACT.email}`} class="text-brand-700 hover:underline">{CONTACT.email}</a>
+          nebo zavolat na
+          <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} class="text-brand-700 hover:underline">
+            {CONTACT.phone}
+          </a>.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-slate-900">Jaké údaje sbíráme a proč</h3>
+        <p class="mt-2">
+          Když odešlete poptávkový formulář, uložíme jméno, e-mail, telefon (pokud ho vyplníte),
+          zvolenou velikost domu a text zprávy. Údaje používáme jen k tomu, abychom vám
+          odpověděli, ověřili podmínky na vašem pozemku a připravili nabídku. Právním základem je
+          jednání o smlouvě na vaši žádost a náš oprávněný zájem odpovědět na poptávku.
+        </p>
+        <p class="mt-2">
+          Údaje nikomu neprodáváme ani nepředáváme k reklamním účelům. Vidí je jen lidé, kteří
+          vaši poptávku vyřizují.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-slate-900">Jak dlouho údaje uchováváme</h3>
+        <p class="mt-2">
+          Poptávku uchováváme 12 měsíců od poslední komunikace. Pokud se domluvíme na stavbě,
+          uchováváme údaje po dobu trvání smlouvy a dále po dobu, kterou vyžadují účetní a
+          daňové předpisy.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-slate-900">Kdo nám s tím pomáhá</h3>
+        <p class="mt-2">
+          Web i e-mailová schránka běží na serverech společnosti WEDOS Internet, a.s. v Česku.
+          Poptávka z formuláře se odesílá e-mailem na {CONTACT.email}.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-slate-900">Vaše práva</h3>
+        <p class="mt-2">
+          Můžete požádat o přístup ke svým údajům, jejich opravu nebo výmaz, omezení zpracování
+          a můžete vznést námitku. Stačí napsat na {CONTACT.email}. Pokud si myslíte, že s údaji
+          nakládáme špatně, můžete se obrátit na Úřad pro ochranu osobních údajů
+          (<a href="https://uoou.gov.cz" rel="noopener" class="text-brand-700 hover:underline">uoou.gov.cz</a>).
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-slate-900">Cookies a měření návštěvnosti</h3>
+        <p class="mt-2">
+          Pro fungování webu nepotřebujeme žádné cookies. Měření návštěvnosti (Google Analytics)
+          zapínáme jen s vaším souhlasem v cookie liště. Souhlas můžete kdykoliv změnit nebo
+          odvolat kliknutím na ikonu cookies v rohu stránky. Bez souhlasu se nic neměří a web
+          funguje stejně.
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
