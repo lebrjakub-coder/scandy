@@ -21,11 +21,11 @@ export const CONTACT = {
   dic: 'CZ10754369',
 } as const;
 
-// Měření: Google Tag Manager a CookieYes. Dokud jsou ID prázdná, layout skripty nevkládá.
-// TODO: doplnit po založení kontejneru GTM a webu v CookieYes (viz CLAUDE.md, Nedodělky).
+// Měření: Google Tag Manager (účet „Scandy“, kontejner scandy.cz, založen 15. 9. 2026).
+// Načítá ho až vlastní cookie lišta po souhlasu (components/CookieBanner.astro).
+// Prázdné ID = žádná lišta ani měření.
 export const ANALYTICS = {
-  gtmId: '',
-  cookieYesId: '',
+  gtmId: 'GTM-TW59J8MN',
 } as const;
 
 export const NAV = [

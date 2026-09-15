@@ -2,7 +2,8 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, ANALYTICS } from '../consts';
+import CookieBanner from '../components/CookieBanner.astro';
+import { SITE } from '../consts';
 
 interface Props {
   title?: string;
@@ -46,51 +47,15 @@ const ogImage = new URL('/og.jpg', Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Cookie lišta (CookieYes) musí být před GTM, aby Google dostal souhlas dřív, než začne měřit. -->
-    {
-      ANALYTICS.cookieYesId && (
-        <script
-          is:inline
-          id="cookieyes"
-          type="text/javascript"
-          src={`https://cdn-cookieyes.com/client_data/${ANALYTICS.cookieYesId}/script.js`}
-        />
-      )
-    }
-    {
-      ANALYTICS.gtmId && (
-        <script is:inline define:vars={{ gtmId: ANALYTICS.gtmId }}>
-          (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            var f = d.getElementsByTagName(s)[0],
-              j = d.createElement(s);
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
-            f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', gtmId);
-        </script>
-      )
-    }
   </head>
 
   <body class="flex min-h-screen flex-col">
-    {
-      ANALYTICS.gtmId && (
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${ANALYTICS.gtmId}`}
-            height="0"
-            width="0"
-            style="display:none;visibility:hidden"
-          />
-        </noscript>
-      )
-    }
     <Header />
     <main class="flex-1">
       <slot />
     </main>
     <Footer />
+    <!-- Google Tag Manager načítá až lišta po souhlasu, proto tu není klasický GTM snippet. -->
+    <CookieBanner />
   </body>
 </html>

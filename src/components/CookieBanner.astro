@@ -1,0 +1,98 @@
+---
+// Vlastní cookie lišta. Google Tag Manager (a s ním GA4) se načte až po souhlasu,
+// bez souhlasu se nic neměří. Volba se pamatuje rok v localStorage.
+// Odkaz s atributem data-cookie-settings (v patičce) lištu znovu otevře.
+import { ANALYTICS } from '../consts';
+---
+
+{
+  ANALYTICS.gtmId && (
+    <>
+      <div
+        id="cookie-lista"
+        class="fixed inset-x-0 bottom-0 z-50 hidden border-t border-slate-200 bg-white p-4 shadow-[0_-4px_24px_rgba(0,0,0,0.08)]"
+        role="dialog"
+        aria-label="Nastavení cookies"
+      >
+        <div class="mx-auto flex max-w-5xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-sm text-slate-600">
+            Cookies používáme jen k měření návštěvnosti (Google Analytics), a to pouze s vaším
+            souhlasem. Bez souhlasu web funguje stejně.
+            <a href="/ochrana-osobnich-udaju/" class="underline hover:text-slate-900">
+              Více o cookies
+            </a>
+          </p>
+          <div class="flex shrink-0 gap-3">
+            <button
+              type="button"
+              data-cookie="denied"
+              class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400"
+            >
+              Odmítnout
+            </button>
+            <button
+              type="button"
+              data-cookie="granted"
+              class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-700"
+            >
+              Přijmout
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script is:inline define:vars={{ gtmId: ANALYTICS.gtmId }}>
+        (function () {
+          var KEY = 'scandy-cookies';
+          var ROK = 365 * 24 * 60 * 60 * 1000;
+          var lista = document.getElementById('cookie-lista');
+
+          function nacistGtm() {
+            if (window.__gtmNacteno) return;
+            window.__gtmNacteno = true;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
+            document.head.appendChild(s);
+          }
+
+          function precistVolbu() {
+            try {
+              var v = JSON.parse(localStorage.getItem(KEY));
+              if (v && v.do > Date.now()) return v.volba;
+            } catch (e) {}
+            return null;
+          }
+
+          function ulozitVolbu(volba) {
+            try {
+              localStorage.setItem(KEY, JSON.stringify({ volba: volba, do: Date.now() + ROK }));
+            } catch (e) {}
+          }
+
+          var volba = precistVolbu();
+          if (volba === 'granted') nacistGtm();
+          else if (volba === null) lista.classList.remove('hidden');
+
+          lista.querySelectorAll('[data-cookie]').forEach(function (tlacitko) {
+            tlacitko.addEventListener('click', function () {
+              var v = tlacitko.getAttribute('data-cookie');
+              ulozitVolbu(v);
+              lista.classList.add('hidden');
+              if (v === 'granted') nacistGtm();
+            });
+          });
+
+          document.querySelectorAll('[data-cookie-settings]').forEach(function (odkaz) {
+            odkaz.addEventListener('click', function (e) {
+              e.preventDefault();
+              lista.classList.remove('hidden');
+            });
+          });
+        })();
+      </script>
+    </>
+  )
+}

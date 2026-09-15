@@ -147,9 +147,12 @@ architektovy, ne firemní.
 - [x] Provozovatel v patičce: Stavbag Constructions s.r.o., IČO 10754369, DIČ CZ10754369
       (z ARES 15. 9. 2026)
 - [x] Stránka `/ochrana-osobnich-udaju/` (GDPR + cookies), odkaz z patičky a z formuláře
-- [ ] Měření: `ANALYTICS` v `src/consts.ts` čeká na ID kontejneru GTM (`GTM-XXXXXXX`) a ID
-      webu v CookieYes. Dokud jsou prázdná, skripty se nevkládají. Po doplnění nastavit v GA4
-      klíčovou událost: zobrazení `/dekujeme/` = odeslaná poptávka.
+- [ ] Měření (15. 9. 2026): GTM účet „Scandy“, kontejner scandy.cz `GTM-TW59J8MN` (verze 2
+      publikována, značka Google Analytics GA4). GA4: účet „Stavbag“, vlastnost
+      „Scandy (scandy.cz)“, stream 15780971439, měřicí ID `G-DTWCLGJMVG`. Vše pod Google účtem
+      info@stavbag.cz. Cookie lišta je vlastní (`components/CookieBanner.astro`), bez externí
+      služby; GTM se načte až po souhlasu, volba se pamatuje rok v localStorage.
+- [ ] V GA4 nastavit klíčovou událost: zobrazení `/dekujeme/` = odeslaná poptávka.
 - [ ] Dodací lhůta (`HOUSE.deliveryWeeks`) je `null`, na webu se zatím neukazuje
 - [x] Ceny se zobrazují s DPH 21 % (`VAT_RATE` v `src/consts.ts`, základ bez DPH zůstává
       u variant). Rozhodnuto 15. 9. 2026.
