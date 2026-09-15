@@ -162,4 +162,5 @@ architektovy, ne firemní.
       `FTP_PASSWORD` (zadává majitel v GitHubu, nikdy do repa). `public/.htaccess` řeší
       404, přesměrování na HTTPS a cache.
 - [x] FTP údaje jsou v GitHub Secrets, Let's Encrypt zapnutý 14. 9. 2026
-- [ ] Chybí OG náhledový obrázek (`public/og.jpg` → ideálně WebP, 1200×630)
+- [x] OG náhled `public/og.jpg` 1200×630 (JPG schválně, sociální sítě WebP ne vždy vezmou),
+      meta v `BaseLayout.astro`. Přidáno 15. 9. 2026.

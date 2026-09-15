@@ -3,9 +3,25 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import { SITE, HOUSE, formatPriceFrom } from '../consts';
-import heroImg from '../assets/tinyhouse-pultova-strecha.webp';
-import pultovaImg from '../assets/tinyhouse-pultova-strecha.webp';
-import sedlovaImg from '../assets/tinyhouse-sedlova-strecha.webp';
+import heroImg from '../assets/hero-sedlova-jezero.webp';
+import pultovaImg from '../assets/strecha-pultova.webp';
+import sedlovaImg from '../assets/strecha-sedlova.webp';
+import galZimaHory from '../assets/galerie-zima-hory.webp';
+import galZimaKrajina from '../assets/galerie-zima-krajina.webp';
+import galVecerRodina from '../assets/galerie-vecer-rodina.webp';
+import galJezeroMolo from '../assets/galerie-jezero-molo.webp';
+import galPergola from '../assets/galerie-pergola-terasa.webp';
+import galJezeroBorovice from '../assets/galerie-jezero-borovice.webp';
+
+// Galerie na úvodu. Různé poměry stran srovná aspect-[3/2] s object-cover.
+const gallery = [
+  { img: galVecerRodina, alt: 'Rodina večeří na terase domu TINYHOUSE s pultovou střechou, za domem zapadá slunce' },
+  { img: galJezeroBorovice, alt: 'Dům TINYHOUSE se sedlovou střechou a pergolou mezi borovicemi u jezera' },
+  { img: galZimaHory, alt: 'Dům TINYHOUSE s pultovou střechou v zimě, zasněžená terasa a hory v pozadí' },
+  { img: galJezeroMolo, alt: 'Dům TINYHOUSE s pultovou střechou na břehu jezera, před ním dřevěné molo s loďkou' },
+  { img: galPergola, alt: 'Rodina se psem odpočívá na terase pod dřevěnou pergolou domu TINYHOUSE s výhledem na jezero' },
+  { img: galZimaKrajina, alt: 'Dům TINYHOUSE s pultovou střechou na zasněžené stráni, v pozadí zasněžené hory' },
+];
 
 const roofImages = { pultova: pultovaImg, sedlova: sedlovaImg };
 
@@ -52,12 +68,12 @@ const steps = [
   <section class="relative isolate overflow-hidden bg-brand-700 text-white sm:flex sm:min-h-[85svh] sm:items-end">
     <Image
       src={heroImg}
-      alt="Dům TINYHOUSE s pultovou střechou, svislým modřínovým obkladem a dřevěnou terasou na louce"
-      widths={[640, 960, 1264]}
+      alt="Dům TINYHOUSE se sedlovou střechou, pergolou a dřevěnou terasou na břehu jezera při západu slunce"
+      widths={[640, 960, 1280, 1672]}
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      class="w-full sm:absolute sm:inset-0 sm:-z-20 sm:h-full sm:object-cover sm:object-[55%_50%]"
+      class="w-full sm:absolute sm:inset-0 sm:-z-20 sm:h-full sm:object-cover sm:object-center"
     />
     <div
       class="absolute inset-0 -z-10 hidden bg-linear-to-t from-black/85 via-black/40 to-black/5 sm:block"
@@ -167,7 +183,27 @@ const steps = [
     </p>
   </Section>
 
-  <Section title="Jak to probíhá" lead="Od první zprávy po předání klíčů." class="bg-slate-50">
+  <Section
+    title="Dům v každém ročním období"
+    lead="U vody, na horách nebo za domem v obci. Stejný dům, jiný pozemek."
+    class="bg-slate-50"
+  >
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        gallery.map((g) => (
+          <Image
+            src={g.img}
+            alt={g.alt}
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw"
+            class="aspect-[3/2] w-full rounded-xl object-cover"
+          />
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section title="Jak to probíhá" lead="Od první zprávy po předání klíčů.">
     <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {
         steps.map((s, i) => (
