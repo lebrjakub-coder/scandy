@@ -152,7 +152,11 @@ architektovy, ne firemní.
       „Scandy (scandy.cz)“, stream 15780971439, měřicí ID `G-DTWCLGJMVG`. Vše pod Google účtem
       info@stavbag.cz. Cookie lišta je vlastní (`components/CookieBanner.astro`), bez externí
       služby; GTM se načte až po souhlasu, volba se pamatuje rok v localStorage.
-- [ ] V GA4 nastavit klíčovou událost: zobrazení `/dekujeme/` = odeslaná poptávka.
+- [x] GA4 klíčová událost `poptavka_odeslana` (page_view s page_location obsahující
+      `/dekujeme/`), vytvořena 15. 9. 2026 v Administrátor → Události.
+- [x] Google Search Console: doména scandy.cz ověřena 15. 9. 2026 přes DNS TXT
+      (`google-site-verification=…` v DNS u Wedosu, nemazat), sitemapa odeslána.
+      Účet info@stavbag.cz.
 - [ ] Dodací lhůta (`HOUSE.deliveryWeeks`) je `null`, na webu se zatím neukazuje
 - [x] Ceny se zobrazují s DPH 21 % (`VAT_RATE` v `src/consts.ts`, základ bez DPH zůstává
       u variant). Rozhodnuto 15. 9. 2026.
