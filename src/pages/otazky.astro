@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { HOUSE, CONTACT, formatPriceFrom } from '../consts';
+
+const [v40, v55] = HOUSE.variants;
+
+// Otázky jsou zároveň výrazy, které lidé zadávají do vyhledávání. Odpovědi jen z ověřených
+// podkladů (projektová dokumentace, rozhodnutí majitele); nic nedomýšlet.
+const faq = [
+  {
+    q: 'Potřebuji na dům stavební povolení?',
+    a: `Většinou ne. ${HOUSE.name} je navržený jako drobná stavba podle stavebního zákona č. 283/2021 Sb.: zastavěná plocha do 55 m² a výška do 4 m. Pokud je pozemek v územním plánu určený k rekreaci, dům stojí nejméně 2 m od hranic pozemku a po jeho umístění zůstane aspoň polovina pozemku schopná vsakovat dešťovou vodu, nevyžaduje povolení záměru. Územní plán vaší obce ověříme ještě před nabídkou.`,
+  },
+  {
+    q: 'Co je to drobná stavba do 55 m²?',
+    a: 'Kategorie ze stavebního zákona pro menší stavby, které při splnění podmínek nepotřebují povolení. Rozhoduje zastavěná plocha do 55 m², výška do 4 m, jedno nadzemní podlaží a využití, které územní plán na pozemku dovoluje. Obě velikosti našeho domu, 40 i 55 m², se do těchto limitů vejdou.',
+  },
+  {
+    q: 'Kolik stojí malý dřevěný dům na klíč?',
+    a: `${v40.name} začíná na ceně ${formatPriceFrom(v40.priceFrom)}, ${v55.name} na ${formatPriceFrom(v55.priceFrom)}. V ceně je kompletní dům včetně oken, dveří, střechy, fasády, koupelny, podlah, omítek, elektrokotle se zásobníkem teplé vody, dopravy a montáže. Zvlášť se naceňují základové patky podle pozemku, přípojky, terasa s pergolou a kuchyňská linka.`,
+  },
+  {
+    q: 'Můžu v domě bydlet celoročně?',
+    a: 'Technicky ano. Dům má izolované stěny i střechu, okna s izolačním trojsklem a elektrické vytápění, takže funguje i v zimě. Právně jde o stavbu pro rekreaci, protože jen tak se obejde bez povolení. Jestli si v něm můžete nahlásit trvalý pobyt, záleží na územním plánu vaší obce. Ověříme to s vámi u konkrétního pozemku.',
+  },
+  {
+    q: 'Jaký pozemek potřebuji?',
+    a: 'Pozemek, který územní plán určuje k rekreaci, s odstupem 2 m od hranic a dostatkem nezpevněné plochy pro vsakování. Prakticky také přístup pro nákladní auto s panely. Dům stojí na betonových patkách, takže si poradí i s mírně svažitým nebo nerovným terénem. Pošlete nám obec a číslo parcely a řekneme vám, co na pozemku jde.',
+  },
+  {
+    q: 'Čím se liší tiny house od mobilního domu?',
+    a: 'Mobilní dům stojí na podvozku a je to výrobek, náš dům je stavba. Má dřevěnou nosnou konstrukci, dokumentaci pro provedení stavby, posouzenou statiku pro všechny sněhové oblasti Česka a stojí na betonových patkách. Nepřemisťuje se, zato je to plnohodnotný dům s izolací a životností běžné dřevostavby.',
+  },
+  {
+    q: 'Jaké má dům základy?',
+    a: 'Betonové patky do nezámrzné hloubky, na nich dřevěný roznášecí rám. Pod domem zůstává větraná mezera, takže není potřeba základová deska, hydroizolace ani výkopy po celé ploše. Rozmístění a výšku patek navrhneme podle konkrétního pozemku a jeho geologie.',
+  },
+  {
+    q: 'Pultová, nebo sedlová střecha?',
+    a: `Obě mají stejný půdorys, stejnou dispozici i stejnou cenu. ${HOUSE.roofs[0].name} má sklon ${HOUSE.roofs[0].slope} a jednoduchý moderní tvar. ${HOUSE.roofs[1].name} má sklon ${HOUSE.roofs[1].slope}, klasickou siluetu chaty a o něco víc místa v úložném patře. Vybíráte při objednávce.`,
+  },
+  {
+    q: 'Jak se dům vytápí a co je s energiemi?',
+    a: 'V ceně je elektrokotel se zásobníkem teplé vody, umístěný v koupelně. Přípojka elektřiny, vody a řešení odpadních vod se naceňují podle pozemku, protože každý je jiný. Pokud na pozemku sítě nejsou, projdeme s vámi možnosti ještě před podpisem smlouvy.',
+  },
+  {
+    q: 'Jak probíhá stavba a jak dlouho trvá?',
+    a: 'Stěny vyrábíme jako hotové panely v hale, takže výrobu nezdrží počasí. Na pozemku se panely smontují na připravené patky, dokončí se střecha, fasáda a interiér. Přesný harmonogram uvedeme v nabídce podle vytížení výroby a stavu pozemku.',
+  },
+  {
+    q: 'Kde všude stavíte?',
+    a: `Po celém Česku. Konstrukce je staticky posouzena pro sněhové oblasti I až V a větrové oblasti I a II, tedy včetně hor. Sídlíme v Dobřichovicích u Prahy, nejrychleji tak vyřizujeme poptávky ze Středočeského kraje a Prahy.`,
+  },
+  {
+    q: 'Kdo dům navrhl?',
+    a: `Architekt ${HOUSE.architect}, statiku posoudila ${HOUSE.structuralEngineer}, autorizovaná inženýrka ČKAIT. Dům má hotovou dokumentaci pro provedení stavby, takže se nic nevymýšlí za pochodu a víte, co dostanete.`,
+  },
+];
+
+// Strukturovaná data pro Google (FAQPage): otázky se pak mohou ukázat přímo ve výsledcích.
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Otázky a odpovědi: povolení, cena, bydlení v chatě"
+  description="Potřebujete na malý dřevěný dům stavební povolení? Kolik stojí chata na klíč a jde v ní bydlet celoročně? Odpovědi na nejčastější otázky k domu TINYHOUSE."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <Section
+    title="Otázky a odpovědi"
+    lead="Co se nás lidé ptají nejčastěji, než si dům objednají."
+  >
+    <div class="max-w-3xl divide-y divide-slate-200">
+      {
+        faq.map((f) => (
+          <details class="group py-4">
+            <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              {f.q}
+              <span class="shrink-0 text-brand-600 transition-transform group-open:rotate-45" aria-hidden="true">
+                +
+              </span>
+            </summary>
+            <p class="mt-3 text-slate-600">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-brand-50 p-6 sm:p-8">
+      <p class="font-semibold text-slate-900">Nenašli jste odpověď?</p>
+      <p class="mt-2 text-slate-600">
+        Napište nám, kde máte pozemek, a odpovíme na míru. Nebo zavolejte na
+        <a href={`tel:${CONTACT.phone.replace(/\s/g, '')}`} class="text-brand-700 hover:underline">
+          {CONTACT.phone}
+        </a>.
+      </p>
+      <div class="mt-6 flex flex-col gap-4 sm:flex-row">
+        <a
+          href="/kontakt/"
+          class="rounded-lg bg-brand-600 px-6 py-3 text-center font-medium text-white transition-colors hover:bg-brand-700"
+        >
+          Nezávazná poptávka
+        </a>
+        <a
+          href="/dum/"
+          class="rounded-lg border border-slate-300 px-6 py-3 text-center font-medium text-slate-700 transition-colors hover:border-slate-400"
+        >
+          Parametry domu
+        </a>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

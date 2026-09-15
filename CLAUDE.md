@@ -154,6 +154,9 @@ architektovy, ne firemní.
       služby; GTM se načte až po souhlasu, volba se pamatuje rok v localStorage.
 - [x] GA4 klíčová událost `poptavka_odeslana` (page_view s page_location obsahující
       `/dekujeme/`), vytvořena 15. 9. 2026 v Administrátor → Události.
+- [x] Mobilní menu (hamburger v `Header.astro`), přidáno 15. 9. 2026 s pátou položkou
+      „Otázky“ (`/otazky/`, stránka s FAQ a strukturovanými daty FAQPage pro klíčová slova:
+      stavební povolení, drobná stavba, chata na klíč, celoroční bydlení, tiny house).
 - [x] Google Search Console: doména scandy.cz ověřena 15. 9. 2026 přes DNS TXT
       (`google-site-verification=…` v DNS u Wedosu, nemazat), sitemapa odeslána.
       Účet info@stavbag.cz.

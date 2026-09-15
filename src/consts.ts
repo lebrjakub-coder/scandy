@@ -4,7 +4,7 @@ export const SITE = {
   name: 'Scandy',
   title: 'Scandy – typový dřevěný dům na klíč, 40 nebo 55 m²',
   description:
-    'Typový dřevěný dům TINYHOUSE od architekta, 40 nebo 55 m², pultová nebo sedlová střecha. Na rekreačním pozemku často bez povolení záměru. Poptejte nezávazně.',
+    'Dřevěný dům TINYHOUSE na klíč, 40 nebo 55 m². Drobná stavba, na rekreačním pozemku často bez stavebního povolení. Hotový projekt od architekta, montáž u vás.',
   lang: 'cs',
   locale: 'cs_CZ',
 } as const;
@@ -31,6 +31,7 @@ export const ANALYTICS = {
 export const NAV = [
   { href: '/', label: 'Úvod' },
   { href: '/dum/', label: 'Dům' },
+  { href: '/otazky/', label: 'Otázky' },
   { href: '/o-nas/', label: 'O nás' },
   { href: '/kontakt/', label: 'Kontakt' },
 ] as const;
