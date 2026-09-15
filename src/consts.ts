@@ -51,7 +51,7 @@ export const HOUSE = {
   variants: [
     {
       id: '40',
-      name: 'TINYHOUSE 40',
+      name: 'TINYHOUSE 40 m²',
       length: '9,5 m',
       builtUp: '40 m²',
       usable: '32 m²',
@@ -60,7 +60,7 @@ export const HOUSE = {
     },
     {
       id: '55',
-      name: 'TINYHOUSE 55',
+      name: 'TINYHOUSE 55 m²',
       length: '12,9 m',
       builtUp: '55 m²',
       usable: '43 m²',

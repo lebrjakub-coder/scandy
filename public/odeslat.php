@@ -44,8 +44,8 @@ if ($jmeno === '' || $zprava === '' || filter_var($email, FILTER_VALIDATE_EMAIL)
 
 $velikosti = [
     ''    => 'ještě neví',
-    '40'  => 'TINYHOUSE 40',
-    '55'  => 'TINYHOUSE 55',
+    '40'  => 'TINYHOUSE 40 m²',
+    '55'  => 'TINYHOUSE 55 m²',
     'obe' => 'obě, chce porovnat',
 ];
 $velikost = $velikosti[$varianta] ?? $varianta;
