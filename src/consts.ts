@@ -45,7 +45,7 @@ export const HOUSE = {
   width: '4,25 m',
   height: '4 m',
 
-  // Dodací lhůta zatím není stanovená (null). Ceny „od“ jsou u variant, bez DPH (viz VAT_RATE).
+  // Dodací lhůta zatím není stanovená (null). Ceny „od“ u variant jsou konečné, včetně DPH.
   deliveryWeeks: null as number | null,
 
   variants: [
@@ -65,7 +65,7 @@ export const HOUSE = {
       builtUp: '55 m²',
       usable: '43 m²',
       rooms: 'obývací pokoj s kuchyní, ložnice, pokoj, koupelna s WC',
-      priceFrom: 3_500_000 as number | null,
+      priceFrom: 3_250_000 as number | null,
     },
   ],
 
@@ -85,12 +85,9 @@ export const HOUSE = {
   ],
 } as const;
 
-/** Sazba DPH pro rekreační stavbu. Ceny v HOUSE.variants jsou bez DPH, web zobrazuje s DPH. */
-export const VAT_RATE = 0.21;
-
-/** Cena ve formátu „od 1 234 000 Kč vč. DPH“, nebo „na vyžádání“, když ještě není stanovená. */
+/** Cena ve formátu „od 1 234 000 Kč vč. DPH“, nebo „na vyžádání“, když ještě není stanovená.
+ *  Částka v HOUSE.variants je už včetně DPH (rozhodnutí majitele 15. 9. 2026). */
 export function formatPriceFrom(price: number | null): string {
   if (price === null) return 'na vyžádání';
-  const withVat = Math.round(price * (1 + VAT_RATE));
-  return `od ${withVat.toLocaleString('cs-CZ')} Kč vč. DPH`;
+  return `od ${price.toLocaleString('cs-CZ')} Kč vč. DPH`;
 }

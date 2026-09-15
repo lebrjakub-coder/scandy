@@ -158,8 +158,8 @@ architektovy, ne firemní.
       (`google-site-verification=…` v DNS u Wedosu, nemazat), sitemapa odeslána.
       Účet info@stavbag.cz.
 - [ ] Dodací lhůta (`HOUSE.deliveryWeeks`) je `null`, na webu se zatím neukazuje
-- [x] Ceny se zobrazují s DPH 21 % (`VAT_RATE` v `src/consts.ts`, základ bez DPH zůstává
-      u variant). Rozhodnuto 15. 9. 2026.
+- [x] Ceny: od 2 500 000 Kč (40 m²) a od 3 250 000 Kč (55 m²), obě konečné včetně DPH,
+      zadané přímo v `HOUSE.variants`. Rozhodnuto 15. 9. 2026.
 - [ ] Parametry varianty 40 m² (9,5 m, užitná 32 m²) jsou odvozené ze studie,
       majitel je musí potvrdit. Projektová dokumentace (DPS) existuje jen pro
       13m dům. Půdorys 40 na webu je výřez z DPS půdorysu bez levého pokoje
