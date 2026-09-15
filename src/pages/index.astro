@@ -46,11 +46,9 @@ const steps = [
 ---
 
 <BaseLayout description={SITE.description}>
-  <!--
-    Hero. Mobil: fotka celá nahoře (dům je vidět), text pod ní na tmavém podkladu.
-    Od sm: fotka přes celou plochu, text přes ni, tmavý přechod zdola drží kontrast.
-  -->
-  <section class="relative isolate overflow-hidden bg-brand-700 text-white sm:flex sm:min-h-[85svh] sm:items-end">
+  <!-- Hero: fotka přes celou šířku nahoře, text pod ní na zeleném podkladu. Na velkém
+       monitoru je výška fotky omezená, aby text nezmizel pod okraj obrazovky. -->
+  <section class="bg-brand-700 text-white">
     <Image
       src={heroImg}
       alt="Dům TINYHOUSE se sedlovou střechou, pergolou a dřevěnou terasou na břehu jezera při západu slunce"
@@ -58,32 +56,26 @@ const steps = [
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      class="w-full sm:absolute sm:inset-0 sm:-z-20 sm:h-full sm:object-cover sm:object-center"
+      class="w-full object-cover object-center sm:max-h-[60svh]"
     />
-    <div
-      class="absolute inset-0 -z-10 hidden bg-linear-to-r from-black/75 via-black/35 via-50% to-transparent sm:block"
-      aria-hidden="true"
-    >
-    </div>
 
-    <div class="mx-auto w-full max-w-5xl px-4 py-10 sm:pt-40 sm:pb-20">
+    <div class="mx-auto w-full max-w-5xl px-4 py-10 sm:py-14">
       <p class="text-sm font-semibold tracking-wide text-brand-100 uppercase">
         Typový dřevěný dům {HOUSE.name}
       </p>
-      <!-- Na desktopu je text v užším sloupci vlevo, aby nezakrýval dům na fotce. -->
-      <h1 class="mt-3 max-w-xl text-4xl font-bold tracking-tight sm:text-5xl">
+      <h1 class="mt-3 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
         Dřevěný dům do 55&nbsp;m². Na klíč, od architekta, bez zbytečné byrokracie.
       </h1>
-      <p class="mt-6 max-w-lg text-lg text-slate-100 sm:text-base">
+      <p class="mt-6 max-w-2xl text-lg text-slate-100">
         {HOUSE.name} je typový dům navržený tak, aby splnil definici drobné stavby.
         Na pozemku určeném k rekreaci ho tak většinou postavíte bez povolení záměru.
         Vyberete si velikost 40 nebo 55&nbsp;m² a pultovou nebo sedlovou střechu.
       </p>
       <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-        <!-- Na mobilu leží tlačítko na zeleném podkladu, proto je bílé; od sm je nad fotkou zelené. -->
+        <!-- Tlačítko leží na zeleném podkladu, proto je bílé. -->
         <a
           href="/kontakt/"
-          class="rounded-lg bg-white px-6 py-3 text-center font-medium text-brand-700 transition-colors hover:bg-brand-50 sm:bg-brand-600 sm:text-white sm:hover:bg-brand-500"
+          class="rounded-lg bg-white px-6 py-3 text-center font-medium text-brand-700 transition-colors hover:bg-brand-50"
         >
           Nezávazná poptávka
         </a>
