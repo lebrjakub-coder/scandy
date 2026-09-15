@@ -19,3 +19,12 @@ html {
 body {
   @apply bg-white text-slate-800 antialiased;
 }
+
+/* Bílý text položený přímo na fotce: jemný stín místo tmavého podkladu.
+   @utility, aby fungovaly varianty jako sm:text-na-fotce. */
+@utility text-na-fotce {
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.7),
+    0 2px 14px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(0, 0, 0, 0.45);
+}
