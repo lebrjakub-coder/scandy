@@ -8,6 +8,7 @@ import sedlova55Img from '../assets/studie-sedlova-strecha-55.webp';
 // Půdorys 40 je výřez z DPS půdorysu 13m domu bez levého pokoje (DPS pro 40 zatím není).
 import pudorys40Img from '../assets/dps-pudorys-40.webp';
 import pudorys55Img from '../assets/dps-pudorys-55.webp';
+import zimaImg from '../assets/galerie-zima-krajina.webp';
 
 const [v40, v55] = HOUSE.variants;
 
@@ -198,6 +199,13 @@ const drawingFrame = 'block rounded-xl border border-slate-200 bg-white p-2 sm:p
     id="spolecne"
     class="bg-slate-50"
   >
+    <Image
+      src={zimaImg}
+      alt="Dům TINYHOUSE s pultovou střechou na zasněžené stráni, v pozadí zasněžené hory při západu slunce"
+      widths={[640, 1024, 1600]}
+      sizes="(min-width: 1024px) 1024px, 100vw"
+      class="mb-10 w-full rounded-xl"
+    />
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         construction.map((c) => (
