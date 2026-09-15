@@ -61,7 +61,14 @@ const steps = [
       class="w-full object-cover object-center sm:max-h-[85svh]"
     />
 
-    <!-- Na fotce je dům od 38 % šířky doprava, text proto sedí u levého okraje v úzkém sloupci. -->
+    <!-- Závoj přes fotku (jen desktop): tmavší u textu vlevo, k domu vpravo se vytrácí. -->
+    <div
+      class="absolute inset-0 hidden bg-linear-to-r from-black/55 via-black/25 via-45% to-transparent sm:block"
+      aria-hidden="true"
+    >
+    </div>
+
+    <!-- Na fotce je dům v pravé polovině, text proto sedí u levého okraje v úzkém sloupci. -->
     <div class="sm:absolute sm:inset-0 sm:flex sm:items-center">
       <div class="w-full px-4 py-10 sm:px-12 sm:py-0">
         <div class="sm:max-w-md sm:text-na-fotce">

@@ -25,6 +25,13 @@ import zimaImg from '../assets/o-nas-zima.webp';
       class="w-full object-cover object-center sm:h-[50svh] sm:max-h-[520px] sm:min-h-[380px]"
     />
 
+    <!-- Závoj přes fotku (jen desktop): tmavší u textu vpravo, k domu vlevo se vytrácí. -->
+    <div
+      class="absolute inset-0 hidden bg-linear-to-l from-black/55 via-black/25 via-45% to-transparent sm:block"
+      aria-hidden="true"
+    >
+    </div>
+
     <div class="sm:absolute sm:inset-0 sm:flex sm:items-center">
       <div class="mx-auto w-full max-w-5xl px-4 py-10 sm:py-0">
         <div class="sm:ml-auto sm:max-w-md sm:text-na-fotce">
