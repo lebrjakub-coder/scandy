@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import { SITE, HOUSE, formatPriceFrom } from '../consts';
-import heroImg from '../assets/hero-sedlova-jezero.webp';
+import heroImg from '../assets/uvod-jezero.webp';
 import pultovaImg from '../assets/galerie-jezero-molo.webp';
 import sedlovaImg from '../assets/strecha-sedlova.webp';
 // Další rendery (galerie-*.webp) zůstávají v src/assets pro pozdější použití, zatím se nezobrazují.
@@ -53,7 +53,7 @@ const steps = [
   <section class="relative bg-brand-700 text-white">
     <Image
       src={heroImg}
-      alt="Dům TINYHOUSE se sedlovou střechou, pergolou a dřevěnou terasou na břehu jezera při západu slunce"
+      alt="Dům TINYHOUSE se sedlovou střechou a pergolou na břehu jezera, vlevo hladina a zapadající slunce"
       widths={[640, 960, 1280, 1672]}
       sizes="100vw"
       loading="eager"
