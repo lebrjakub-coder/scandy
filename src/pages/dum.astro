@@ -8,7 +8,6 @@ import sedlova55Img from '../assets/studie-sedlova-strecha-55.webp';
 // Půdorys 40 je výřez z DPS půdorysu 13m domu bez levého pokoje (DPS pro 40 zatím není).
 import pudorys40Img from '../assets/dps-pudorys-40.webp';
 import pudorys55Img from '../assets/dps-pudorys-55.webp';
-import zimaImg from '../assets/galerie-zima-krajina.webp';
 
 const [v40, v55] = HOUSE.variants;
 
@@ -58,33 +57,6 @@ const houses = [
       alt: 'Půdorys 1. NP domu TINYHOUSE 55 z projektové dokumentace: pokoj, obývací prostor s kuchyní, chodba, koupelna, zádveří a ložnice, s kótami',
       caption: 'Půdorys 1. NP',
     },
-  },
-];
-
-const construction = [
-  {
-    title: 'Nosná konstrukce',
-    text: 'Lehký dřevěný skelet two-by-four ze sloupků 50/140 mm. Rámy opláštěné dřevovláknitou deskou zvenku a OSB deskou zevnitř vznikají v hale jako hotové panely.',
-  },
-  {
-    title: 'Fasáda',
-    text: 'Svislá modřínová nebo cedrová prkna na provětrávaném roštu. Meziokenní pilíře z antracitových vláknocementových desek. Skladba je difuzně otevřená.',
-  },
-  {
-    title: 'Střecha',
-    text: 'Pultová se sklonem 10° nebo sedlová se sklonem 21°, obě z falcovaného lakovaného plechu v tmavě šedé (RAL 7016) na dřevěném záklopu. Cena obou variant je stejná.',
-  },
-  {
-    title: 'Okna a dveře',
-    text: 'Plastové rámy v antracitu s izolačním trojsklem, Uw 0,8 W/m²K. Na terasu vedou velké posuvné HS portály, na boční fasádě je bezrámové sedací okno.',
-  },
-  {
-    title: 'Založení',
-    text: 'Betonové patky do nezámrzné hloubky, dům stojí nad terénem s provětrávanou mezerou. Bez základové desky, bez hydroizolace, bez výkopů po celé ploše.',
-  },
-  {
-    title: 'Interiér',
-    text: 'Tenkovrstvé omítky, vinylová podlaha, keramický obklad v koupelně na celou výšku, zavěšené WC. Vnitřní dveře bezfalcové se skrytou zárubní.',
   },
 ];
 
@@ -193,37 +165,7 @@ const drawingFrame = 'block rounded-xl border border-slate-200 bg-white p-2 sm:p
     ))
   }
 
-  <Section
-    title="Společné pro obě velikosti"
-    lead="Konstrukce, materiály a založení jsou u obou domů stejné. Liší se jen délka."
-    id="spolecne"
-    class="bg-slate-50"
-  >
-    <Image
-      src={zimaImg}
-      alt="Dům TINYHOUSE s pultovou střechou na zasněžené stráni, v pozadí zasněžené hory při západu slunce"
-      widths={[640, 1024, 1600]}
-      sizes="(min-width: 1024px) 1024px, 100vw"
-      class="mb-10 w-full rounded-xl"
-    />
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        construction.map((c) => (
-          <article class="rounded-xl border border-slate-200 p-6">
-            <h3 class="font-semibold text-slate-900">{c.title}</h3>
-            <p class="mt-2 text-slate-600">{c.text}</p>
-          </article>
-        ))
-      }
-    </div>
-    <p class="mt-6 text-sm text-slate-500">
-      Konstrukce je staticky posouzena pro sněhové oblasti I až V a větrové oblasti I a II. Dům
-      tak můžete postavit kdekoliv v Česku včetně hor. Návrh a projektová dokumentace:
-      {HOUSE.architect}, statika {HOUSE.structuralEngineer}.
-    </p>
-  </Section>
-
-  <Section title="Co je v ceně">
+  <Section title="Co je v ceně" class="bg-slate-50">
     <div class="grid gap-8 sm:grid-cols-2">
       <div>
         <h3 class="font-semibold text-slate-900">Dům na klíč obsahuje</h3>
@@ -261,7 +203,6 @@ const drawingFrame = 'block rounded-xl border border-slate-200 bg-white p-2 sm:p
   <Section
     title="Kdy nepotřebujete povolení"
     lead="Dům je navržený jako drobná stavba podle stavebního zákona č. 283/2021 Sb."
-    class="bg-slate-50"
   >
     <div class="grid gap-8 sm:grid-cols-2">
       <div>
