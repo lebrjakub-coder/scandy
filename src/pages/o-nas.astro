@@ -1,9 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import { HOUSE } from '../consts';
-import stavbaImg from '../assets/stavba-drevena-konstrukce.webp';
 ---
 
 <BaseLayout
@@ -25,13 +23,6 @@ import stavbaImg from '../assets/stavba-drevena-konstrukce.webp';
         pozemek, terasu a vybavení.
       </p>
     </div>
-    <Image
-      src={stavbaImg}
-      alt="Tesař zatlouká hřebík do dřevěného rámu stěny, v pozadí rozestavěná dřevostavba"
-      widths={[640, 1024, 1600]}
-      sizes="(min-width: 1024px) 1024px, 100vw"
-      class="mt-10 w-full rounded-xl"
-    />
   </Section>
 
   <Section title="Kdo za domem stojí" class="bg-slate-50">
