@@ -6,22 +6,7 @@ import { SITE, HOUSE, formatPriceFrom } from '../consts';
 import heroImg from '../assets/hero-sedlova-jezero.webp';
 import pultovaImg from '../assets/galerie-jezero-molo.webp';
 import sedlovaImg from '../assets/strecha-sedlova.webp';
-import galZimaHory from '../assets/galerie-zima-hory.webp';
-import galZimaKrajina from '../assets/galerie-zima-krajina.webp';
-import galVecerRodina from '../assets/galerie-vecer-rodina.webp';
-import galLouka from '../assets/galerie-louka.webp';
-import galPergola from '../assets/galerie-pergola-terasa.webp';
-import galJezeroBorovice from '../assets/galerie-jezero-borovice.webp';
-
-// Galerie na úvodu. Různé poměry stran srovná aspect-[3/2] s object-cover.
-const gallery = [
-  { img: galVecerRodina, alt: 'Rodina večeří na terase domu TINYHOUSE s pultovou střechou, za domem zapadá slunce' },
-  { img: galJezeroBorovice, alt: 'Dům TINYHOUSE se sedlovou střechou a pergolou mezi borovicemi u jezera' },
-  { img: galZimaHory, alt: 'Dům TINYHOUSE s pultovou střechou v zimě, zasněžená terasa a hory v pozadí' },
-  { img: galLouka, alt: 'Dům TINYHOUSE s pultovou střechou a dřevěnou terasou na louce za letního dne' },
-  { img: galPergola, alt: 'Rodina se psem odpočívá na terase pod dřevěnou pergolou domu TINYHOUSE s výhledem na jezero' },
-  { img: galZimaKrajina, alt: 'Dům TINYHOUSE s pultovou střechou na zasněžené stráni, v pozadí zasněžené hory' },
-];
+// Další rendery (galerie-*.webp) zůstávají v src/assets pro pozdější použití, zatím se nezobrazují.
 
 const roofImages = { pultova: pultovaImg, sedlova: sedlovaImg };
 
@@ -183,27 +168,7 @@ const steps = [
     </p>
   </Section>
 
-  <Section
-    title="Dům v každém ročním období"
-    lead="U vody, na horách nebo za domem v obci. Stejný dům, jiný pozemek."
-    class="bg-slate-50"
-  >
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        gallery.map((g) => (
-          <Image
-            src={g.img}
-            alt={g.alt}
-            widths={[480, 800, 1200]}
-            sizes="(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw"
-            class="aspect-[3/2] w-full rounded-xl object-cover"
-          />
-        ))
-      }
-    </div>
-  </Section>
-
-  <Section title="Jak to probíhá" lead="Od první zprávy po předání klíčů.">
+  <Section title="Jak to probíhá" lead="Od první zprávy po předání klíčů." class="bg-slate-50">
     <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {
         steps.map((s, i) => (
